@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include <math.h>
 
+int findDecimalPoint(float num) {
+    int digits;
+    for (int i = 0; num >= 1; i++, digits = i) {
+        num /= 10;
+    }
+    return digits;
+}
+
 char* fcnvt(float num, int sigFigs) {
     if (num < 0) {
         num *= -1;
@@ -30,14 +38,11 @@ char* fcnvt(float num, int sigFigs) {
     return out;
 }
 
-int findDecimalPoint(float num) {
-    int digits;
-    for (int i = 0; num > 0; i++, digits = i) {
-        num /= 10;
-    }
-    return digits;
-}
-
 int main(int argc, const char* argv[]) {
-    printf("%s\n", fcnvt(12.375f, 4));
+    float num;
+    int sigFigs;
+    sscanf(argv[0], "%f", &num);
+    sscanf(argv[1], "%d", &sigFigs);
+    
+    printf("%s\n", fcnvt(12.375, 3));
 }
